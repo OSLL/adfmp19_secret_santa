@@ -7,7 +7,7 @@ class DummyNoFestivalClientContext : NoFestivalClientContext {
     override fun createFestival(festivalId: FestivalId) {
     }
 
-    override fun joinToFestival(festivalId: FestivalId) {
+    override fun joinFestival(festivalId: FestivalId) {
         throw ClientErrorException("There is no festival with given id.")
     }
 }

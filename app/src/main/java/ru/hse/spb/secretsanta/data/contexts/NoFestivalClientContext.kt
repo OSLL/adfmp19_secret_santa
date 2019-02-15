@@ -19,9 +19,9 @@ interface NoFestivalClientContext {
     fun createFestival(festivalId: FestivalId)
 
     /**
-     * Person that uses this particular client joins to a festival with a given [FestivalId].
+     * Person that uses this particular client joins a festival with a given [FestivalId].
      *
      * @param festivalId if of a festival to join to.
      */
-    fun joinToFestival(festivalId: FestivalId)
+    fun joinFestival(festivalId: FestivalId)
 }
