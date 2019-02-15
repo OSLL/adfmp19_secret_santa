@@ -78,18 +78,18 @@ class DummyFestivalAdminClientInterface : FestivalAdminClientInterface {
 
     private var thisPersonWishlist: Wishlist = Wishlist(
         listOf(
-            "Socks with different patterns and images",
-            "New PlayStation game",
-            "Interesting book",
-            "Magic wand from Harry Potter franchise (not a vibrator)",
-            "Fluffy toy",
-            "Warm sweater (my size is M)",
-            "Small backpack"
+            WishlistEntry("Socks with different patterns and images"),
+            WishlistEntry("New PlayStation game"),
+            WishlistEntry("Interesting book"),
+            WishlistEntry("Magic wand from Harry Potter franchise (not a vibrator)"),
+            WishlistEntry("Fluffy toy"),
+            WishlistEntry("Warm sweater (my size is M)"),
+            WishlistEntry("Small backpack")
         ),
         listOf(
-            "Sweets",
-            "Board game",
-            "I don't like decorations. If something must stay in one place and I should look at it then it's a bad gift for me."
+            WishlistEntry("Sweets"),
+            WishlistEntry("Board game"),
+            WishlistEntry("I don't like decorations. If something must stay in one place and I should look at it then it's a bad gift for me.")
         )
     )
 
@@ -104,17 +104,17 @@ class DummyFestivalAdminClientInterface : FestivalAdminClientInterface {
             participantsIds[1],
             Wishlist(
                 listOf(
-                    "Comic book",
-                    "Tasty tea",
-                    "Marzipan sweets",
-                    "Jar for cookies",
-                    "Fancy cup",
-                    "Expensive pen",
-                    "Cool poster"
+                    WishlistEntry("Comic book"),
+                    WishlistEntry("Tasty tea"),
+                    WishlistEntry("Marzipan sweets"),
+                    WishlistEntry("Jar for cookies"),
+                    WishlistEntry("Fancy cup"),
+                    WishlistEntry("Expensive pen"),
+                    WishlistEntry("Cool poster")
                 ),
                 listOf(
-                    "Any cloth",
-                    "Be very careful if you want to give me a book. I don't like books. Not all of them, but most of them."
+                    WishlistEntry("Any cloth"),
+                    WishlistEntry("Be very careful if you want to give me a book. I don't like books. Not all of them, but most of them.")
                 )
             ),
             GiftReview("That was an amazing gift! Exactly what I wanted. Thx :)")
