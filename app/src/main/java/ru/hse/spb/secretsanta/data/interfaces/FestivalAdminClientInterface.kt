@@ -15,9 +15,9 @@ import ru.hse.spb.secretsanta.data.statuses.FestivalMode
  */
 interface FestivalAdminClientInterface : FestivalParticipantClientInterface {
     /**
-     * @return a map that for each santa contains his/her [SantaGiftInfo].
+     * A map that for each santa contains his/her [SantaGiftInfo].
      */
-    fun getGiftsInfo(): Map<PersonId, SantaGiftInfo>
+    val giftsInfo: Map<PersonId, SantaGiftInfo>
 
     /**
      * Starts this festival.

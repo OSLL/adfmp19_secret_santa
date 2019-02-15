@@ -18,5 +18,5 @@ interface GeneralClientInterface {
      * @param personId id of a person.
      * @returns [PersonType] of a person with a given [PersonId].
      */
-    fun getPersonType(personId: PersonId): PersonType
+    fun requestPersonType(personId: PersonId): PersonType
 }

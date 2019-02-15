@@ -24,29 +24,29 @@ interface FestivalParticipantClientInterface {
     val thisPersonId: PersonId
 
     /**
-     * @return [FestivalMode] of this festival.
+     * [FestivalMode] of this festival.
      */
-    fun getMode(): FestivalMode
+    val mode: FestivalMode
 
     /**
-     * @return [FestivalRules] of this festival.
+     * [FestivalRules] of this festival.
      */
-    fun getRules(): FestivalRules
+    val rules: FestivalRules
 
     /**
-     * @return list of participants of this festival.
+     * List of participants of this festival.
      */
-    fun getParticipants(): List<Person>
+    val participants: List<Person>
 
     /**
-     * @return [Wishlist] of person who uses this particular client.
+     * [Wishlist] of person who uses this particular client.
      */
-    fun getThisPersonWishlist(): Wishlist
+    val thisPersonWishlist: Wishlist
 
     /**
-     * @return [RecipientInfo] of gift recipient of person who uses this particular client.
+     * [RecipientInfo] of gift recipient of person who uses this particular client.
      */
-    fun getRecipientInfo(): RecipientInfo
+    val recipientInfo: RecipientInfo
 
     /**
      * Person who uses this particular client leaves this festival.

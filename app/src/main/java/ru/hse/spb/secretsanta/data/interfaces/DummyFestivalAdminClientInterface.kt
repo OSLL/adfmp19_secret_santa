@@ -38,45 +38,41 @@ class DummyFestivalAdminClientInterface : FestivalAdminClientInterface {
 
     override val thisPersonId: PersonId = participantIds[0]
 
-    private var mode: FestivalMode = FestivalMode.PREPARATION
+    override var mode: FestivalMode = FestivalMode.PREPARATION
+        private set
 
-    override fun getMode(): FestivalMode = mode
-
-    private var rules: FestivalRules
-
-    init {
-        val deadline = Calendar.getInstance()
+    override var rules: FestivalRules = Calendar.getInstance().let { deadline ->
         deadline.set(2020, 1, 12, 12, 0)
 
-        rules = FestivalRules(
+        FestivalRules(
             deadline,
             PriceLimitations(500, 2000),
             "Folks, we are going to meet on Jan 12 at Nicky's place and exchange the gifts (secretly). Don't forget to sign your gift."
         )
     }
+        private set
 
-    override fun getRules(): FestivalRules = rules
-
-    override fun getParticipants(): List<Person> =
+    override val participants: List<Person> =
         (0 until participantIds.size).map { Person(participantIds[it], participantNames[it]) }
 
-    override fun getGiftsInfo(): Map<PersonId, SantaGiftInfo> {
-        if (mode != FestivalMode.ENDED) {
-            throw ClientErrorException("It is not possible to look at gifts info before festival has ended.")
+    override val giftsInfo: Map<PersonId, SantaGiftInfo>
+        get() {
+            if (mode != FestivalMode.ENDED) {
+                throw ClientErrorException("It is not possible to look at gifts info before festival has ended.")
+            }
+
+            return mapOf(*(0 until participantIds.size).map {
+                Pair(
+                    participantIds[it],
+                    SantaGiftInfo(
+                        participantIds[(it + 1) % participantIds.size],
+                        SantaGiftStatus.PRESENTED
+                    )
+                )
+            }.toTypedArray())
         }
 
-        return mapOf(*(0 until participantIds.size).map {
-            Pair(
-                participantIds[it],
-                SantaGiftInfo(
-                    participantIds[(it + 1) % participantIds.size],
-                    SantaGiftStatus.PRESENTED
-                )
-            )
-        }.toTypedArray())
-    }
-
-    private var thisPersonWishlist: Wishlist = Wishlist(
+    override var thisPersonWishlist: Wishlist = Wishlist(
         listOf(
             WishlistEntry("Socks with different patterns and images"),
             WishlistEntry("New PlayStation game"),
@@ -92,34 +88,34 @@ class DummyFestivalAdminClientInterface : FestivalAdminClientInterface {
             WishlistEntry("I don't like decorations. If something must stay in one place and I should look at it then it's a bad gift for me.")
         )
     )
+        private set
 
-    override fun getThisPersonWishlist(): Wishlist = thisPersonWishlist
+    override val recipientInfo: RecipientInfo
+        get() {
+            if (mode == FestivalMode.PREPARATION) {
+                throw ClientErrorException("There is no recipient when festival has not been started.")
+            }
 
-    override fun getRecipientInfo(): RecipientInfo {
-        if (mode == FestivalMode.PREPARATION) {
-            throw ClientErrorException("There is no recipient when festival has not been started.")
-        }
-
-        return RecipientInfo(
-            participantIds[1],
-            Wishlist(
-                listOf(
-                    WishlistEntry("Comic book"),
-                    WishlistEntry("Tasty tea"),
-                    WishlistEntry("Marzipan sweets"),
-                    WishlistEntry("Jar for cookies"),
-                    WishlistEntry("Fancy cup"),
-                    WishlistEntry("Expensive pen"),
-                    WishlistEntry("Cool poster")
+            return RecipientInfo(
+                participantIds[1],
+                Wishlist(
+                    listOf(
+                        WishlistEntry("Comic book"),
+                        WishlistEntry("Tasty tea"),
+                        WishlistEntry("Marzipan sweets"),
+                        WishlistEntry("Jar for cookies"),
+                        WishlistEntry("Fancy cup"),
+                        WishlistEntry("Expensive pen"),
+                        WishlistEntry("Cool poster")
+                    ),
+                    listOf(
+                        WishlistEntry("Any cloth"),
+                        WishlistEntry("Be very careful if you want to give me a book. I don't like books. Not all of them, but most of them.")
+                    )
                 ),
-                listOf(
-                    WishlistEntry("Any cloth"),
-                    WishlistEntry("Be very careful if you want to give me a book. I don't like books. Not all of them, but most of them.")
-                )
-            ),
-            GiftReview("That was an amazing gift! Exactly what I wanted. Thx :)")
-        )
-    }
+                GiftReview("That was an amazing gift! Exactly what I wanted. Thx :)")
+            )
+        }
 
     override fun startFestival() {
         if (mode != FestivalMode.PREPARATION) {
