@@ -1,1 +1,1 @@
-# adfmp19_secret_santa
+# Secret Santa Android App
