@@ -8,7 +8,7 @@ import ru.hse.spb.secretsanta.data.statuses.SantaGiftStatus
 import java.util.*
 
 class DummyFestivalAdminClientInterface : FestivalAdminClientInterface {
-    private val participantsIds: List<PersonId> = listOf(
+    private val participantIds: List<PersonId> = listOf(
         PersonId("1"),
         PersonId("2"),
         PersonId("3"),
@@ -21,7 +21,7 @@ class DummyFestivalAdminClientInterface : FestivalAdminClientInterface {
         PersonId("10")
     )
 
-    private val participantsNames: List<String> = listOf(
+    private val participantNames: List<String> = listOf(
         "Hattie Kaiser",
         "Philip Mills",
         "Tracey Mccallum",
@@ -36,7 +36,7 @@ class DummyFestivalAdminClientInterface : FestivalAdminClientInterface {
 
     override val festivalId: FestivalId = FestivalId("Merry Christmas")
 
-    override val thisPersonId: PersonId = participantsIds[0]
+    override val thisPersonId: PersonId = participantIds[0]
 
     private var mode: FestivalMode = FestivalMode.PREPARATION
 
@@ -58,18 +58,18 @@ class DummyFestivalAdminClientInterface : FestivalAdminClientInterface {
     override fun getRules(): FestivalRules = rules
 
     override fun getParticipants(): List<Person> =
-        (0 until participantsIds.size).map { Person(participantsIds[it], participantsNames[it]) }
+        (0 until participantIds.size).map { Person(participantIds[it], participantNames[it]) }
 
     override fun getGiftsInfo(): Map<PersonId, SantaGiftInfo> {
         if (mode != FestivalMode.ENDED) {
             throw ClientErrorException("It is not possible to look at gifts info before festival has ended.")
         }
 
-        return mapOf(*(0 until participantsIds.size).map {
+        return mapOf(*(0 until participantIds.size).map {
             Pair(
-                participantsIds[it],
+                participantIds[it],
                 SantaGiftInfo(
-                    participantsIds[(it + 1) % participantsIds.size],
+                    participantIds[(it + 1) % participantIds.size],
                     SantaGiftStatus.PRESENTED
                 )
             )
@@ -101,7 +101,7 @@ class DummyFestivalAdminClientInterface : FestivalAdminClientInterface {
         }
 
         return RecipientInfo(
-            participantsIds[1],
+            participantIds[1],
             Wishlist(
                 listOf(
                     WishlistEntry("Comic book"),
