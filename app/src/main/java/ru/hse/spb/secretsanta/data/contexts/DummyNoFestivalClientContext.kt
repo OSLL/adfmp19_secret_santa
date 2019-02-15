@@ -1,9 +1,9 @@
-package ru.hse.spb.secretsanta.data.interfaces
+package ru.hse.spb.secretsanta.data.contexts
 
 import ru.hse.spb.secretsanta.data.FestivalId
 import ru.hse.spb.secretsanta.data.exceptions.ClientErrorException
 
-class DummyNoFestivalClientInterface : NoFestivalClientInterface {
+class DummyNoFestivalClientContext : NoFestivalClientContext {
     override fun createFestival(festivalId: FestivalId) {
     }
 

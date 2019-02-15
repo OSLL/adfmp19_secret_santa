@@ -1,4 +1,4 @@
-package ru.hse.spb.secretsanta.data.interfaces
+package ru.hse.spb.secretsanta.data.contexts
 
 import ru.hse.spb.secretsanta.data.*
 import ru.hse.spb.secretsanta.data.exceptions.ClientErrorException
@@ -7,7 +7,7 @@ import ru.hse.spb.secretsanta.data.statuses.GiftReviewType
 import ru.hse.spb.secretsanta.data.statuses.SantaGiftStatus
 import java.util.*
 
-class DummyFestivalAdminClientInterface : FestivalAdminClientInterface {
+class DummyFestivalAdminClientContext : FestivalAdminClientContext {
     private val participantIds: List<PersonId> = listOf(
         PersonId("1"),
         PersonId("2"),

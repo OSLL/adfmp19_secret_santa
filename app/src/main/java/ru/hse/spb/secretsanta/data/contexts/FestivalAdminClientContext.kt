@@ -1,19 +1,18 @@
-package ru.hse.spb.secretsanta.data.interfaces
+package ru.hse.spb.secretsanta.data.contexts
 
 import ru.hse.spb.secretsanta.data.FestivalRules
 import ru.hse.spb.secretsanta.data.PersonId
 import ru.hse.spb.secretsanta.data.SantaGiftInfo
 import ru.hse.spb.secretsanta.data.exceptions.NetworkFailureException
-import ru.hse.spb.secretsanta.data.statuses.FestivalMode
 
 /**
- * Client interface of an admin of a festival. Interface allows to perform various read and write
+ * Client context of an admin of a festival. Context allows to perform various read and write
  * requests generally to a server that maintains all the information.
  *
- * It is supposed that UI classes use this interface directly, so its implementation must be as much friendly
+ * It is supposed that UI classes use this context directly, so its implementation must be as much friendly
  * as possible. Failures may be indicated by [NetworkFailureException] and its subclasses.
  */
-interface FestivalAdminClientInterface : FestivalParticipantClientInterface {
+interface FestivalAdminClientContext : FestivalParticipantClientContext {
     /**
      * A map that for each santa contains his/her [SantaGiftInfo].
      */
