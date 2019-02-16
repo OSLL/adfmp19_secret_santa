@@ -148,7 +148,7 @@ class DummyFestivalAdminClientContext : FestivalAdminClientContext {
         return hasThisPersonSentReview
     }
 
-    override fun sentReview(review: GiftReview?, reviewType: GiftReviewType) {
+    override fun sendReview(review: GiftReview?, reviewType: GiftReviewType) {
         if (mode != FestivalMode.ENDED) {
             throw ClientErrorException("Festival has not ended. It is not possible to send reviews.")
         }

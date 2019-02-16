@@ -64,7 +64,7 @@ interface FestivalParticipantClientContext {
      * @param review a review that is sent.
      * @param reviewType type of a review that is sent.
      */
-    fun sentReview(review: GiftReview?, reviewType: GiftReviewType)
+    fun sendReview(review: GiftReview?, reviewType: GiftReviewType)
 
     /**
      * Person who uses this particular client changes his/her [Wishlist].
