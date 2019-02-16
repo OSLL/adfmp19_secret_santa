@@ -9,4 +9,4 @@ class Wishlist(val wishes: List<WishlistEntry>, val antiWishes: List<WishlistEnt
 /**
  * One entry of a [Wishlist]
  */
-inline class WishlistEntry(val description: String)
+data class WishlistEntry(val description: String)
